@@ -1,0 +1,23 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.container {
+  flex: 1;
+  margin-left: 380px;
+  display: flex;
+  flex-direction: column;
+}
+
+.body {
+  padding: 25px;
+  flex-grow: 1;
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin-left: 0;
+  }
+}

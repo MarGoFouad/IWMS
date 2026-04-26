@@ -1,0 +1,280 @@
+.job-container {
+  padding: 20px;
+  background: #f7f8fa;
+  border-radius: 12px;
+}
+
+/* Header */
+.job-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.job-top h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.job-top p {
+  margin: 0;
+  color: #8b8b8b;
+  font-size: 14px;
+}
+
+/* Button */
+.create-btn {
+  background: #0d1b4c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* Search */
+.job-search {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.search-box {
+  flex: 1;
+  background: #f1f2f4;
+  border-radius: 10px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-box input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+}
+
+.filter-box {
+  width: 120px;
+  background: #f1f2f4;
+  border-radius: 10px;
+}
+
+/* Table */
+.table-wrapper {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f5f6f8;
+  font-size: 13px;
+  color: #888;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+tbody tr {
+  border-top: 1px solid #eee;
+}
+
+.customer-name {
+  font-weight: 500;
+}
+
+.customer-code {
+  font-size: 12px;
+  color: #999;
+}
+
+/* Status */
+.status {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.status.Inprogress {
+  background: #e0ebff;
+  color: #2f6fed;
+}
+
+.status.Delayed {
+  background: #ffe5e5;
+  color: #e53935;
+}
+
+.status.Completed {
+  background: #e3f7ec;
+  color: #2eaf6d;
+}
+
+/* Icon */
+.eye-icon {
+  cursor: pointer;
+  color: #555;
+}
+.order-track {
+  margin-top: 15px;
+  
+}
+
+.order-item {
+  background: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.tracking-container {
+  padding: 15px;
+  background: #f5f6f8;
+}
+
+
+.order-card,
+.progress-card,
+.stages-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  p{
+    color: #6c757d;
+    font-size: 14px;
+  }
+}
+
+/* badges */
+.badge {
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+}
+
+.badge.blue {
+  background: #cfe2ff;
+  color: #084298;
+}
+
+.badge.green {
+  background: #d1e7dd;
+  color: #0f5132;
+}
+
+.badge.gray {
+  background: #e2e3e5;
+  color: #41464b;
+}
+
+/* progress */
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.progress-bar {
+  height: 8px;
+  background: #eee;
+  border-radius: 10px;
+}
+
+.progress-fill {
+  width: 25%;
+  height: 100%;
+  background: #0d6efd;
+  border-radius: 10px;
+}
+
+/* stages */
+.stage-item {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* circle */
+.circle {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.circle.completed {
+  background: #198754;
+  color: white;
+}
+
+.circle.inprogress {
+  background: #0d6efd;
+  color: white;
+}
+
+/* content */
+.stage-content {
+  flex: 1;
+  background: #f8f9fa;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.stage-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* buttons */
+.btn {
+  margin-top: 8px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.btn.green {
+  background: #198754;
+  color: white;
+}
+
+.btn.gray {
+  background: #6c757d;
+  color: white;
+}

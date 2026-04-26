@@ -1,0 +1,76 @@
+.containers {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+/* the cards ------------------------*/
+.cards {
+  grid-column: span 6;
+  display: grid;
+  grid-template-columns :repeat(2,1fr);
+  gap: 15px;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.icon {
+  font-size: 22px;
+}
+
+
+/* the requests ----------------------*/
+.requests {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+}
+
+.requestItem {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.approved {
+  color: green;
+}
+
+.pending {
+  color: orange;
+}
+
+.rejected {
+  color: red;
+}
+
+/* the recent */
+.activity {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+}
+
+/* grid */
+.ca{
+    grid-column: span 6;
+}
+.ch{
+    grid-column: span 6;
+}
+.re{
+    grid-column: span 6;
+}
+.ac{
+    grid-column: span 6;
+}
