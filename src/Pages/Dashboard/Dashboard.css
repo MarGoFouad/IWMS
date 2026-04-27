@@ -1,76 +1,69 @@
-.containers {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 20px;
+.Container {
+  background-color: #f8fafc;
+  min-height: 100vh;
   padding: 20px;
 }
-/* the cards ------------------------*/
-.cards {
-  grid-column: span 6;
+
+.containers {
   display: grid;
-  grid-template-columns :repeat(2,1fr);
-  gap: 15px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
-.card {
+.ca,
+.ch,
+.re,
+.ac {
   background: white;
-  padding: 15px;
+  padding: 20px;
   border-radius: 12px;
-
-  display: flex;
-  align-items: center;
-  gap: 15px;
-
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-.icon {
-  font-size: 22px;
-}
-
-
-/* the requests ----------------------*/
-.requests {
-  background: white;
-  padding: 15px;
-  border-radius: 12px;
-}
-
+/* -------------------------------------request------------------------------------------ */
 .requestItem {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f1f5f9;
 }
 
-.approved {
-  color: green;
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .pending {
-  color: orange;
+  background: #fef3c7;
+  color: #d97706;
 }
-
+.approved {
+  background: #d1fae5;
+  color: #059669;
+}
 .rejected {
-  color: red;
+  background: #fee2e2;
+  color: #dc2626;
 }
 
-/* the recent */
-.activity {
-  background: white;
-  padding: 15px;
-  border-radius: 12px;
+/* --------------------------------recent -----------------------------------*/
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+  background: rgba(236, 236, 240, 0.3);
+  padding: 12px;
+  border-radius: 8px;
 }
 
-/* grid */
-.ca{
-    grid-column: span 6;
-}
-.ch{
-    grid-column: span 6;
-}
-.re{
-    grid-column: span 6;
-}
-.ac{
-    grid-column: span 6;
+.dot {
+  height: 8px;
+  width: 8px;
+  background-color: #3b82f6;
+  border-radius: 50%;
+  margin-top: 6px;
 }

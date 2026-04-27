@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   BarChart,
   Bar,
@@ -7,47 +8,31 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 
 const data = [
-  { name: "Jan", orders: 30 },
-  { name: "Feb", orders: 50 },
-  { name: "Mar", orders: 40 },
-  { name: "Apr", orders: 70 },
-  { name: "May", orders: 60 },
+  { name: "Jan", Orders: 45, Completed: 35 },
+  { name: "Feb", Orders: 52, Completed: 48 },
+  { name: "Mar", Orders: 62, Completed: 55 },
+  { name: "Apr", Orders: 72, Completed: 65 },
 ];
-
-const CustomTooltip = ({ active, payload, label }) => {
-  if (active && payload && payload.length) {
-    return (
-      <div
-        style={{
-          background: "#fff",
-          border: "1px solid #ccc",
-          padding: "10px",
-        }}
-      >
-        <p>{`${label} : ${payload[0].value}`}</p>
-      </div>
-    );
-  }
-
-  return null;
-};
 
 export default function Charts() {
   return (
     <div style={{ width: "100%", height: 300 }}>
-        <h3>Production OverView </h3>
-      <BarChart width={500} height={300} data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip content={<CustomTooltip />} />
-        <Legend />
-        <Bar dataKey="orders" fill="#4f46e5" />
-        <Bar dataKey="Completed" fill="green" />
-      </BarChart>
+      <h3 style={{ marginBottom: "20px" }}>Production Overview</h3>
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart  data={data}>
+          <CartesianGrid strokeDasharray="3 3" vertical={false} />
+          <XAxis dataKey="name" axisLine={false} tickLine={false} />
+          <YAxis axisLine={false} tickLine={false} />
+          <Tooltip />
+          <Legend iconType="rect" align="center" />
+          <Bar dataKey="Orders" fill="#3b82f6" barSize={40} />
+          <Bar dataKey="Completed" fill="#10b981" barSize={40} />
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   );
 }

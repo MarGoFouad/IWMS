@@ -3,6 +3,7 @@ import Cards from './Cards'
 import Charts from './Charts'
 import Request from './Request'
 import Recent from './Recent'
+import "./Dashboard.css";
 export default function Dashboard() {
   return (
     <div className="Container">
