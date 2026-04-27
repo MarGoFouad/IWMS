@@ -7,15 +7,21 @@ export default function Navbar() {
   const location = useLocation();
 
   const getPageTitle = () => {
+    
+    if (location.pathname.startsWith("/JobOrder/create")) {
+    return "Create Job Order";
+  }
+
+  if (location.pathname.startsWith("/JobOrder/tracking")) {
+    return "Tracking Orders";
+  }
     switch (location.pathname) {
       case "/":
         return "Dashboard";
-      case "/Attandance/Attandance":
+      case "/Attendance":
         return "Attendance";
       case "/JobOrder/JobOrder":
         return "Job Orders";
-        case "/JobOrder/tracking":
-        return "Tracking Orders";
       case "/Inventory":
         return "Inventory";
       case "/Production":
@@ -43,7 +49,7 @@ export default function Navbar() {
         <input
           type="text"
           className="searchInput"
-          placeholder="Search..."
+          placeholder="Search"
         />
 
         <BellDot size={20}/>

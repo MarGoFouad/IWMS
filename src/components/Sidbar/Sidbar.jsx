@@ -37,13 +37,13 @@ export default function Sidbar() {
           </li>
 
           <li>
-            <NavLink to={"/Attandance/Attandance"} className={({ isActive }) => (isActive ? "t active" : "t")}>
+            <NavLink to={"/Attendance"} className={({ isActive }) => (isActive ? "t active" : "t")}>
               <Users size={18} />
               Attendance
             </NavLink>
           </li>
 
-          {/* 🔥 Job Orders Dropdown */}
+          {/* Job Orders Dropdown */}
           <li>
             <div className="t dropdown" onClick={() => setOpenJob(!openJob)}>
               <ClipboardList size={18} />
@@ -67,7 +67,7 @@ export default function Sidbar() {
 
 
                 <li>
-                  <NavLink to="/JobOrder/tracking" className="sub-item">
+                  <NavLink to="/JobOrder/tracking" className="sub-item" >
                     Tracking Order
                   </NavLink>
                 </li>

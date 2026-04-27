@@ -120,9 +120,14 @@
 
 }
 .sub-menu a {
+  margin-left:30px;
     padding: 6px 12px;
-   border-radius: 6px;
-    color: rgb(223, 175, 175);
+    border-radius: 6px;
+    color: rgb(218, 210, 210);
     text-decoration: none;
-    transition: 0.3s;
+    transition: 0.2s;
   }
+
+.sub-menu a :hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
