@@ -37,7 +37,7 @@ export default function Sidbar() {
           </li>
 
           <li>
-            <NavLink to={"/Attandance"} className={({ isActive }) => (isActive ? "t active" : "t")}>
+            <NavLink to={"/Attandance/Attandance"} className={({ isActive }) => (isActive ? "t active" : "t")}>
               <Users size={18} />
               Attendance
             </NavLink>

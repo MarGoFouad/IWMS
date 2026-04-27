@@ -20,7 +20,7 @@ let routers = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <Dashboard /> },
-      { path: "Attandance", element: <Attandance /> },
+      { path: "Attandance/Attandance", element: <Attandance /> },
       { path: "JobOrder/JobOrder", element: <JobOrder /> },
       { path: "JobOrder/tracking", element: <Tracking /> },
       { path: "Inventory", element: <Inventory/> },

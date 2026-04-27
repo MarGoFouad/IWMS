@@ -10,10 +10,12 @@ export default function Navbar() {
     switch (location.pathname) {
       case "/":
         return "Dashboard";
-      case "/Attendance":
+      case "/Attandance/Attandance":
         return "Attendance";
-      case "/JobOrder":
+      case "/JobOrder/JobOrder":
         return "Job Orders";
+        case "/JobOrder/tracking":
+        return "Tracking Orders";
       case "/Inventory":
         return "Inventory";
       case "/Production":
