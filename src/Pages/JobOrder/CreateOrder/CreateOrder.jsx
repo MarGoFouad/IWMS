@@ -75,7 +75,7 @@ export default function CreateOrder() {
               {i < currentIndex ? <Check size={14} /> : i + 1}
             </div>
 
-            {i !== steps.length - 1 && <div className="line"></div>}
+            {i !== steps.length - 1 && <div className="Line"></div>}
           </div>
         ))}
       </div>

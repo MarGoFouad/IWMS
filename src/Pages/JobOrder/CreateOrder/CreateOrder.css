@@ -60,8 +60,8 @@
   color: white;
 }
 
-.line {
-  width: 170px;
+.Line {
+  width: 150px;
   height: 5px;
   background: rgba(236, 236, 240, 1);
   margin: 0 5px;
