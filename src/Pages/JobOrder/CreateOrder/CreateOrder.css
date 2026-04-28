@@ -29,9 +29,15 @@
 
 .steps {
   display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* لما تكون في آخر خطوة */
+.createContainer .steps:has(.circle.final) {
+  justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+  height: 200px; /* ممكن تزودي أو تقللي حسب الشكل */
 }
 
 .stepWrapper {
@@ -184,4 +190,50 @@ label {
 }
 .createBtn {
   background: rgba(16, 185, 129, 1);
+}
+/* step 5 */
+.step5Container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 659px;
+  border:1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-top: -100px;
+  margin-bottom: 20px;
+}
+
+.step5Card {
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+.qrSection{
+  margin-top: 20px;
+  background-color: #ECECF04D;
+  width:699.47px;
+  height: 250px;
+  padding-top: 44px;
+  border-radius: 11.5px;
+
+}
+.createBtn {
+  background: #0D194E;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin-top: 40px;
+  cursor: pointer;
+}
+.circle.final {
+  width: 60px;
+  height: 60px;
+  margin-top: 200px;
+  background-color: #d1f5e0;
+  color: #22c55e;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

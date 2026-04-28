@@ -17,7 +17,7 @@ import Step1 from './Pages/JobOrder/CreateOrder/Step1';
 import Step2 from './Pages/JobOrder/CreateOrder/Step2';
 import Step3 from './Pages/JobOrder/CreateOrder/Step3';
 import Step4 from './Pages/JobOrder/CreateOrder/Step4';
-import Step5 from './Pages/JobOrder/CreateOrder/Step5';
+import Step5 from './Pages/JobOrder/CreateOrder/finalState/Step5';
 import Attendance from './Pages/Attandance/Attandance';
 
 
