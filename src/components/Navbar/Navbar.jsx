@@ -26,6 +26,8 @@ export default function Navbar() {
         return "Inventory";
       case "/Production":
         return "Production";
+        case "/Production/board":
+        return "Production";
       case "/Sales":
         return "Sales";
       case "/Employees":

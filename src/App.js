@@ -10,6 +10,8 @@ import JobOrder from './Pages/JobOrder/JobOrder';
 import Tracking from './Pages/JobOrder/tracking';
 
 import Production from './Pages/Production/Production';
+import OverView from './Pages/Production/OverView';
+import Board from './Pages/Production/Board';
 import Suppliers from './Pages/Suppliers/Suppliers';
 import Employees from './Pages/Employees/Employees';
 import CreateOrder from './Pages/JobOrder/CreateOrder/CreateOrder';
@@ -41,7 +43,13 @@ let routers = createBrowserRouter([
 
       { path: "JobOrder/tracking", element: <Tracking /> },
       { path: "Inventory", element: <Inventory/> },
-      { path: "Production", element: <Production /> },
+      { path: "Production", element: <Production /> ,handle: { title: "Production" },
+          children: [
+            { index: true, element: <OverView /> },
+            // { path: "overview", element: <OverView /> },
+            { path: "board", element: <Board /> },
+          ]
+      },
       { path: "Sales", element: <Sales /> },
       { path: "Employees", element: <Employees /> },
       { path: "Suppliers", element: <Suppliers /> },
