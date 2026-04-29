@@ -1,31 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import "./CreateOrder.css";
+
 export default function Step3() {
   const { formData, setFormData } = useOutletContext();
-  const materials = [
-    {
-      name: "Clear Glass Sheet 6mm",
-      id: "MAT-001",
-      stock: "In Stock",
-      units: 45,
-    },
-    { name: "Tempered Glass 8mm", id: "MAT-002", stock: "In Stock", units: 32 },
-    { name: "Frosted Glass 5mm", id: "MAT-003", stock: "In Stock", units: 18 },
-    { name: "Mirror Glass 4mm", id: "MAT-004", stock: "In Stock", units: 8 },
-    {
-      name: "Colored Glass Blue 6mm",
-      id: "MAT-005",
-      stock: "Low Stock",
-      units: 2,
-    },
-    {
-      name: "Laminated Glass 10mm",
-      id: "MAT-006",
-      stock: "In Stock",
-      units: 15,
-    },
-  ];
+
+  const [materials, setMaterials] = useState([]);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("inventory");
+    if (saved) {
+      setMaterials(JSON.parse(saved));
+    }
+  }, []);
+
+  const mappedMaterials = materials.map((item) => ({
+    name: item.name,
+    id: item.id,
+    stock: item.status,
+    units: item.quantity,
+  }));
 
   const handleSelect = (item) => {
     setFormData({
@@ -33,11 +27,12 @@ export default function Step3() {
       material: item,
     });
   };
+
   return (
     <div className="materialsContainer">
       <h2>Select Materials</h2>
 
-      {materials.map((item, i) => (
+      {mappedMaterials.map((item, i) => (
         <div
           key={i}
           className={`materialCard ${
@@ -51,9 +46,7 @@ export default function Step3() {
           </div>
 
           <div className="right">
-            <span
-              className={item.stock === "In Stock" ? "inStock" : "lowStock"}
-            >
+            <span className={item.stock === "In Stock" ? "inStock" : "lowStock"}>
               {item.stock}
             </span>
             <p>{item.units} units</p>

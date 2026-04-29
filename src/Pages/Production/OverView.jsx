@@ -1,4 +1,5 @@
 import React from 'react';
+import { useOutletContext } from 'react-router-dom'; // ضفنا دي عشان نستقبل البحث
 import './Production.css';
 
 const jobsData = [
@@ -10,6 +11,19 @@ const jobsData = [
 ];
 
 const JobsTable = () => {
+  // 1. استقبال الـ searchTerm من الـ Parent
+  const { searchTerm } = useOutletContext();
+
+  // 2. فلترة البيانات بناءً على الـ ID أو اسم العميل
+  const filteredJobs = jobsData.filter((job) => {
+    const searchLower = searchTerm.toLowerCase();
+    return (
+      job.id.toLowerCase().includes(searchLower) ||
+      job.client.toLowerCase().includes(searchLower) ||
+      job.assignedTo.toLowerCase().includes(searchLower)
+    );
+  });
+
   return (
     <div className="table-container">
       <table className="jobs-table">
@@ -25,7 +39,8 @@ const JobsTable = () => {
           </tr>
         </thead>
         <tbody>
-          {jobsData.map((job, index) => (
+          {/* 3. عرض البيانات المفلترة فقط */}
+          {filteredJobs.map((job, index) => (
             <tr key={index}>
               <td className="job-id">{job.id}</td>
               <td className="client-name">{job.client}</td>
@@ -59,6 +74,10 @@ const JobsTable = () => {
           ))}
         </tbody>
       </table>
+      {/* عرض رسالة لو مفيش نتائج */}
+      {filteredJobs.length === 0 && (
+        <p style={{ textAlign: 'center', padding: '20px', color: '#666' }}>No jobs found matching your search.</p>
+      )}
     </div>
   );
 };

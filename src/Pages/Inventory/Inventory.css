@@ -1,0 +1,119 @@
+.job-container {
+  padding: 20px;
+  font-family: Arial;
+}
+
+.alert {
+  background: #ffe5e5;
+  color: #b30000;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ffb3b3;
+}
+
+.alert-title {
+  font-size: 20px;
+}
+
+.alert-desc {
+  font-size: 12px;
+  margin-top: 4px;
+  opacity: 0.8;
+}
+
+.job-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.create-btn {
+  background: rgba(13, 25, 78, 1);
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-box {
+  background: white;
+  padding: 15px;
+  width: 350px;
+  border-radius: 10px;
+}
+
+.modal-box input {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ddd;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.modal-actions .cancel {
+  padding: 8px;
+  border-radius: 6px;
+  background: rgb(169, 168, 168);
+}
+.modal-actions .primary {
+  background: rgba(13, 25, 78, 1);
+  color: white;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.modal-actions .delete {
+  background: red;
+  color: white;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: white;
+}
+
+.LowStock {
+  background: red;
+}
+.Medium {
+  background: orange;
+}
+.InStock {
+  background: green;
+}

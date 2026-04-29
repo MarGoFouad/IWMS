@@ -293,3 +293,121 @@
 .pending { background-color: #94a3b8; color: white; }
 .delayed { background-color: #fee2e2; color: #b91c1c; }
 .completed { background-color: #dcfce7; color: #15803d; }
+/* Board */
+.kanban-container {
+  display: flex;
+  gap: 24px;
+  padding: 40px;
+  background-color: #f8fafc;
+  min-height: 50vh;
+  justify-content: center;
+}
+
+.kanban-column {
+  width: 250px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-left h2 {
+  font-size: 18px;
+  color: #1e293b;
+  margin: 0;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.count {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+/* Job Card Styling */
+.job-card {
+  background-color: #ffffff;
+  border: 1px solid #f1f5f9;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+  transition: transform 0.2s;
+}
+
+.job-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.job-id {
+  color: #3b82f6;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.progress-percent {
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.client-name {
+  font-size: 16px;
+  color: #1e293b;
+  margin: 0 0 12px 0;
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+/* Progress Bar */
+.progress-bar-container {
+  height: 6px;
+  background-color: #f1f5f9;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}

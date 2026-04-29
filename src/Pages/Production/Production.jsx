@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react"; // ضفنا useState هنا
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import "./Production.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,6 +17,9 @@ const search = faSearch;
 export default function Production() {
   const navigate = useNavigate();
   const location = useLocation();
+  
+  // 1. تعريف الـ state للبحث
+  const [searchTerm, setSearchTerm] = useState("");
 
   const isOverview =
     location.pathname === "/Production" ||
@@ -26,7 +29,6 @@ export default function Production() {
 
   return (
     <div className="production-container">
-
       {/* Header */}
       <div className="header">
         <h2>Production Control Center</h2>
@@ -35,18 +37,15 @@ export default function Production() {
 
       {/* Cards */}
       <div className="cards">
-
         <div className="card">
-         
           <div className="card-text">
             <p>Total Jobs</p>
             <h3>5</h3>
           </div>
-           <FontAwesomeIcon icon={faCube} className="Icons" />
+          <FontAwesomeIcon icon={faCube} className="Icons" />
         </div>
 
         <div className="card">
-          
           <div className="card-text">
             <p>In Progress</p>
             <h3>1</h3>
@@ -55,12 +54,11 @@ export default function Production() {
         </div>
 
         <div className="card">
-         
           <div className="card-text">
             <p>Completed</p>
             <h3>1</h3>
           </div>
-           <FontAwesomeIcon icon={faUsers} className="Icons" />
+          <FontAwesomeIcon icon={faUsers} className="Icons" />
         </div>
 
         <div className="card">
@@ -68,16 +66,13 @@ export default function Production() {
             <p>Delayed</p>
             <h3>1</h3>
           </div>     
-               <FontAwesomeIcon icon={faCircleExclamation} className="Icons" />
-
+          <FontAwesomeIcon icon={faCircleExclamation} className="Icons" />
         </div>
-
       </div>
 
       {/* Tabs */}
       <div className="top-bar">
         <div className="tabs">
-
           <button
             className={isOverview ? "active" : ""}
             onClick={() => {
@@ -95,25 +90,29 @@ export default function Production() {
           >
             Kanban Board
           </button>
-
         </div>
 
         <div className="actions">
-
           <div className="search-box">
             <FontAwesomeIcon icon={search} className="search-icon" />
-            <input type="text" placeholder="Search jobs..." />
+            {/* 2. ربط الـ input بالـ state */}
+            <input 
+              type="text" 
+              placeholder="Search jobs..." 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
           </div>
 
           <button className="filter">
             <FontAwesomeIcon icon={filter} className="Icon" />
             Filter
           </button>
-
         </div>
       </div>
 
-      <Outlet />
+      {/* 3. نرسل الـ searchTerm للـ Outlet باستخدام context */}
+      <Outlet context={{ searchTerm }} />
     </div>
   );
 }
