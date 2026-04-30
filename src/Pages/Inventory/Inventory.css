@@ -1,58 +1,49 @@
-.job-container {
+.inventory-container {
   padding: 20px;
   font-family: Arial;
 }
 
-.alert {
+.inventory-container .alert {
   background: #ffe5e5;
   color: #b30000;
   padding: 15px;
   border-radius: 8px;
   margin-bottom: 10px;
-  border: 1px solid #ffb3b3;
 }
 
-.alert-title {
-  font-size: 20px;
-}
-
-.alert-desc {
-  font-size: 12px;
-  margin-top: 4px;
-  opacity: 0.8;
-}
-
-.job-top {
+.inventory-container .job-top {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
 }
 
-.create-btn {
+.inventory-container .create-btn {
   background: rgba(13, 25, 78, 1);
   color: white;
   border: none;
   padding: 8px;
   border-radius: 6px;
+  cursor: pointer;
 }
 
-.modal-overlay {
+.inventory-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0,0,0,0.6);
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index:999;
 }
 
-.modal-box {
+.inventory-modal-box {
   background: white;
   padding: 15px;
   width: 350px;
   border-radius: 10px;
 }
 
-.modal-box input {
+.inventory-modal-box input {
   width: 100%;
   padding: 8px;
   margin: 5px 0;
@@ -67,36 +58,36 @@
 .modal-actions {
   display: flex;
   justify-content: space-between;
-  gap: 5px;
   margin-top: 10px;
 }
 
-.modal-actions .cancel {
+.cancel {
+  background: #ccc;
   padding: 8px;
   border-radius: 6px;
-  background: rgb(169, 168, 168);
 }
-.modal-actions .primary {
-  background: rgba(13, 25, 78, 1);
+
+.primary {
+  background: #0d1b4c;
   color: white;
   padding: 8px;
   border-radius: 6px;
 }
 
-.modal-actions .delete {
+.delete {
   background: red;
   color: white;
   padding: 8px;
   border-radius: 6px;
 }
 
-table {
+.inventory-container table {
   width: 100%;
   border-collapse: collapse;
 }
 
-td,
-th {
+.inventory-container td,
+.inventory-container th {
   padding: 10px;
   border-bottom: 1px solid #eee;
 }
@@ -108,12 +99,37 @@ th {
   color: white;
 }
 
-.LowStock {
-  background: red;
+.LowStock { background: red; }
+.Medium { background: orange; }
+.InStock { background: green; }
+
+.cutoff-container {
+  margin-top: 20px;
+  border:1px solid #eee;
+  padding :15px;
+  border-radius:12px;
 }
-.Medium {
-  background: orange;
+
+.cutoff-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
 }
-.InStock {
-  background: green;
+
+.cut-card {
+  background: #f5f6f8;
+  padding: 15px;
+  border-radius: 12px;
+}
+
+.cut-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.pcs {
+  background: #dbeafe;
+  padding: 4px 10px;
+  border-radius: 8px;
 }

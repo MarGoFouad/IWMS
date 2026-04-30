@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "./Inventory.css";
-import {
-  FaSearch,
-  FaEdit,
-  FaPlus,
-  FaExclamationTriangle,
-} from "react-icons/fa";
+import { FaSearch, FaEdit, FaPlus, FaExclamationTriangle } from "react-icons/fa";
 
 export default function Inventory() {
   const [search, setSearch] = useState("");
   const [open, setOpen] = useState(false);
+  const [mode, setMode] = useState("material");
 
   const [orders, setOrders] = useState(() => {
     const saved = localStorage.getItem("inventory");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  const [cutoffs, setCutoffs] = useState(() => {
+    const saved = localStorage.getItem("cutoffs");
     return saved ? JSON.parse(saved) : [];
   });
 
@@ -23,11 +24,16 @@ export default function Inventory() {
     category: "",
     quantity: "",
     minStock: "",
+    dim: "",
   });
 
   useEffect(() => {
     localStorage.setItem("inventory", JSON.stringify(orders));
   }, [orders]);
+
+  useEffect(() => {
+    localStorage.setItem("cutoffs", JSON.stringify(cutoffs));
+  }, [cutoffs]);
 
   const getStatus = (qty, min) => {
     if (qty < min) return "Low Stock";
@@ -38,27 +44,46 @@ export default function Inventory() {
   const lowStockItems = orders.filter((o) => o.quantity < o.minStock);
 
   const handleSave = () => {
-    const qty = Number(form.quantity);
-    const min = Number(form.minStock);
+    if (mode === "material") {
+      const qty = Number(form.quantity);
+      const min = Number(form.minStock);
 
-    const newItem = {
-      id: editId || "MAT-" + String(Date.now()).slice(-4),
-      name: form.name,
-      category: form.category,
-      quantity: qty,
-      minStock: min,
-      status: getStatus(qty, min),
-      lastRestocked: new Date().toLocaleDateString(),
-    };
+      const newItem = {
+        id: editId || "MAT-" + String(Date.now()).slice(-4),
+        name: form.name,
+        category: form.category,
+        quantity: qty,
+        minStock: min,
+        status: getStatus(qty, min),
+        lastRestocked: new Date().toLocaleDateString(),
+      };
 
-    if (editId) {
-      setOrders(orders.map((i) => (i.id === editId ? newItem : i)));
-      setEditId(null);
+      if (editId) {
+        setOrders(orders.map((i) => (i.id === editId ? newItem : i)));
+        setEditId(null);
+      } else {
+        setOrders([...orders, newItem]);
+      }
     } else {
-      setOrders([...orders, newItem]);
+      const newCut = {
+        id: "CUT-" + String(Date.now()).slice(-3),
+        name: form.name,
+        dim: form.dim,
+        quantity: Number(form.quantity),
+        date: new Date().toISOString().split("T")[0],
+      };
+
+      setCutoffs([...cutoffs, newCut]);
     }
 
-    setForm({ name: "", category: "", quantity: "", minStock: "" });
+    setForm({
+      name: "",
+      category: "",
+      quantity: "",
+      minStock: "",
+      dim: "",
+    });
+
     setOpen(false);
   };
 
@@ -68,31 +93,32 @@ export default function Inventory() {
       category: item.category,
       quantity: item.quantity,
       minStock: item.minStock,
+      dim: "",
     });
 
     setEditId(item.id);
+    setMode("material");
     setOpen(true);
   };
 
   const handleDelete = (id) => {
     setOrders(orders.filter((i) => i.id !== id));
-    setEditId(null);
   };
 
   const filtered = orders.filter(
     (o) =>
       o.name.toLowerCase().includes(search.toLowerCase()) ||
-      o.category.toLowerCase().includes(search.toLowerCase()),
+      o.category.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
-    <div className="job-container">
+    <div className="inventory-container">
+
       {lowStockItems.length > 0 && (
         <div className="alert">
           <div className="alert-title">
             <FaExclamationTriangle size={20} /> Low Stock Alert
           </div>
-
           <div className="alert-desc">
             {lowStockItems.length} materials below minimum stock level
           </div>
@@ -105,49 +131,85 @@ export default function Inventory() {
           <p>Track materials and stock levels</p>
         </div>
 
-        <button
-          className="create-btn"
-          onClick={() => {
-            setOpen(true);
-            setEditId(null);
-          }}
-        >
-          <FaPlus /> Add Material
-        </button>
+        <div style={{ display: "flex", gap: "10px" }}>
+          <button
+            className="create-btn"
+            onClick={() => {
+              setMode("material");
+              setOpen(true);
+              setEditId(null);
+            }}
+          >
+            <FaPlus /> Add Material
+          </button>
+
+          <button
+            className="create-btn"
+            onClick={() => {
+              setMode("cutoff");
+              setOpen(true);
+              setEditId(null);
+            }}
+          >
+            <FaPlus /> Add Cut-off
+          </button>
+        </div>
       </div>
 
       {open && (
-        <div className="modal-overlay" onClick={() => setOpen(false)}>
-          <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-            <h3>{editId ? "Edit Material" : "Add Material"}</h3>
+        <div className="inventory-modal-overlay" onClick={() => setOpen(false)}>
+          <div className="inventory-modal-box" onClick={(e) => e.stopPropagation()}>
+
+            <h3>{mode === "material" ? "Add Material" : "Add Cut-off"}</h3>
 
             <input
-              placeholder="Material Name"
+              placeholder="Name"
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
             />
 
-            <input
-              placeholder="Category"
-              value={form.category}
-              onChange={(e) => setForm({ ...form, category: e.target.value })}
-            />
+            {mode === "material" && (
+              <>
+                <input
+                  placeholder="Category"
+                  value={form.category}
+                  onChange={(e) => setForm({ ...form, category: e.target.value })}
+                />
 
-            <div className="row">
-              <input
-                placeholder="Quantity"
-                value={form.quantity}
-                type="number"
-                onChange={(e) => setForm({ ...form, quantity: e.target.value })}
-              />
+                <div className="row">
+                  <input
+                    placeholder="Quantity"
+                    type="number"
+                    value={form.quantity}
+                    onChange={(e) => setForm({ ...form, quantity: e.target.value })}
+                  />
 
-              <input
-                placeholder="Min Stock"
-                value={form.minStock}
-                type="number"
-                onChange={(e) => setForm({ ...form, minStock: e.target.value })}
-              />
-            </div>
+                  <input
+                    placeholder="Min Stock"
+                    type="number"
+                    value={form.minStock}
+                    onChange={(e) => setForm({ ...form, minStock: e.target.value })}
+                  />
+                </div>
+              </>
+            )}
+
+            {mode === "cutoff" && (
+              <>
+                <input
+                  placeholder="Dimensions (50x30)"
+                  value={form.dim}
+                  onChange={(e) => setForm({ ...form, dim: e.target.value })}
+                />
+
+                <input
+                  placeholder="Quantity"
+                  type="number"
+                  value={form.quantity}
+                  onChange={(e) => setForm({ ...form, quantity: e.target.value })}
+                />
+              </>
+            )}
 
             <div className="modal-actions">
               <button className="cancel" onClick={() => setOpen(false)}>
@@ -155,7 +217,7 @@ export default function Inventory() {
               </button>
 
               <button className="primary" onClick={handleSave}>
-                {editId ? "Update Material" : "Add Material"}
+                Save
               </button>
 
               {editId && (
@@ -164,6 +226,7 @@ export default function Inventory() {
                 </button>
               )}
             </div>
+
           </div>
         </div>
       )}
@@ -182,7 +245,7 @@ export default function Inventory() {
       <table>
         <thead>
           <tr>
-            <th>Material ID</th>
+            <th>ID</th>
             <th>Name</th>
             <th>Category</th>
             <th>Quantity</th>
@@ -215,6 +278,26 @@ export default function Inventory() {
           ))}
         </tbody>
       </table>
+
+      <div className="cutoff-container">
+        <h3>Cut-off Materials (Reusable Pieces)</h3>
+
+        <div className="cutoff-grid">
+          {cutoffs.map((c) => (
+            <div className="cut-card" key={c.id}>
+              <h4>{c.id}</h4>
+              <p>{c.name}</p>
+              <p>Dimensions: {c.dim}</p>
+
+              <div className="cut-footer">
+                <span>{c.date}</span>
+                <span className="pcs">{c.quantity} pcs</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
     </div>
   );
 }

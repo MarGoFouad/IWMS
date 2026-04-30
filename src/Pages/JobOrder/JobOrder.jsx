@@ -171,7 +171,6 @@ export default function JobOrders() {
           }}
         >
           <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-            {/* VIEW */}
             {!editMode && (
               <>
                 <h2>Order Details</h2>
@@ -197,7 +196,6 @@ export default function JobOrders() {
               </>
             )}
 
-            {/* EDIT */}
             {editMode && editForm && (
               <>
                 <h2>Edit Order</h2>

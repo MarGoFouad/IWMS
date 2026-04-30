@@ -6,11 +6,17 @@ export default function Step3() {
   const { formData, setFormData } = useOutletContext();
 
   const [materials, setMaterials] = useState([]);
+  const [cutoffs, setCutoffs] = useState([]);
 
   useEffect(() => {
-    const saved = localStorage.getItem("inventory");
-    if (saved) {
-      setMaterials(JSON.parse(saved));
+    const savedMaterials = localStorage.getItem("inventory");
+    if (savedMaterials) {
+      setMaterials(JSON.parse(savedMaterials));
+    }
+
+    const savedCutoffs = localStorage.getItem("cutoffs");
+    if (savedCutoffs) {
+      setCutoffs(JSON.parse(savedCutoffs));
     }
   }, []);
 
@@ -19,12 +25,28 @@ export default function Step3() {
     id: item.id,
     stock: item.status,
     units: item.quantity,
+    source: "material",
   }));
 
-  const handleSelect = (item) => {
+  const mappedCutoffs = cutoffs.map((item) => ({
+    name: item.name,
+    id: item.id,
+    stock: item.status,
+    units: item.quantity,
+    source: "cutoff",
+  }));
+
+  const handleSelectMaterial = (item) => {
     setFormData({
       ...formData,
       material: item,
+    });
+  };
+
+  const handleSelectCutoff = (item) => {
+    setFormData({
+      ...formData,
+      cutoff: item,
     });
   };
 
@@ -38,7 +60,7 @@ export default function Step3() {
           className={`materialCard ${
             formData.material?.id === item.id ? "selected" : ""
           }`}
-          onClick={() => handleSelect(item)}
+          onClick={() => handleSelectMaterial(item)}
         >
           <div className="left">
             <h4>{item.name}</h4>
@@ -46,13 +68,49 @@ export default function Step3() {
           </div>
 
           <div className="right">
-            <span className={item.stock === "In Stock" ? "inStock" : "lowStock"}>
+            <span
+              className={
+                item.stock === "In Stock" ? "inStock" : "lowStock"
+              }
+            >
               {item.stock}
             </span>
             <p>{item.units} units</p>
           </div>
         </div>
       ))}
+
+      {mappedCutoffs.length > 0 && (
+        <>
+          <h2 style={{ marginTop: "20px" }}>Select Cut Offs</h2>
+
+          {mappedCutoffs.map((item, i) => (
+            <div
+              key={i}
+              className={`materialCard ${
+                formData.cutoff?.id === item.id ? "selected" : ""
+              }`}
+              onClick={() => handleSelectCutoff(item)}
+            >
+              <div className="left">
+                <h4>{item.name}</h4>
+                <p>ID: {item.id}</p>
+              </div>
+
+              <div className="right">
+                <span
+                  className={
+                    item.stock === "In Stock" ? "inStock" : "lowStock"
+                  }
+                >
+                  {item.stock}
+                </span>
+                <p>{item.units} units</p>
+              </div>
+            </div>
+          ))}
+        </>
+      )}
     </div>
   );
 }

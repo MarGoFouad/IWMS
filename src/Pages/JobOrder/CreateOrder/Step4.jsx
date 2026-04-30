@@ -41,10 +41,15 @@ export default function Step4() {
       type: formData.type,
       dim: formData.dim,
       notes: formData.notes,
+
       material: formData.material,
+      cutoff: formData.cutoff,
     };
 
-    localStorage.setItem("orders", JSON.stringify([...existing, newOrder]));
+    localStorage.setItem(
+      "orders",
+      JSON.stringify([...existing, newOrder])
+    );
 
     createdRef.current = true;
   }, []);
@@ -55,35 +60,27 @@ export default function Step4() {
 
       <div className="reviewBox">
         <h3>Customer Info</h3>
-        <p>
-          <strong>Name:</strong> {formData.name}
-        </p>
-        <p>
-          <strong>Phone:</strong> {formData.phone}
-        </p>
+        <p><strong>Name:</strong> {formData.name}</p>
+        <p><strong>Phone:</strong> {formData.phone}</p>
       </div>
 
       <div className="reviewBox">
         <h3>Product Details</h3>
-        <p>
-          <strong>Type:</strong> {formData.type}
-        </p>
-        <p>
-          <strong>Dimensions:</strong> {formData.dim}
-        </p>
-        <p>
-          <strong>Notes:</strong> {formData.notes || "—"}
-        </p>
+        <p><strong>Type:</strong> {formData.type}</p>
+        <p><strong>Dimensions:</strong> {formData.dim}</p>
+        <p><strong>Notes:</strong> {formData.notes || "—"}</p>
       </div>
 
       <div className="reviewBox">
-        <h3>Select Materials</h3>
-        <p>
-          <strong>Material:</strong> {formData.material?.name || "Not selected"}
-        </p>
-        <p>
-          <strong>ID:</strong> {formData.material?.id || "Not selected"}
-        </p>
+        <h3>Material</h3>
+        <p><strong>Material:</strong> {formData.material?.name || "Not selected"}</p>
+        <p><strong>ID:</strong> {formData.material?.id || "Not selected"}</p>
+      </div>
+
+      <div className="reviewBox">
+        <h3>Cut Off</h3>
+        <p><strong>Name:</strong> {formData.cutoff?.name || "Not selected"}</p>
+        <p><strong>ID:</strong> {formData.cutoff?.id || "Not selected"}</p>
       </div>
     </div>
   );
