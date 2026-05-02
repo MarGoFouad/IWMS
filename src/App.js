@@ -4,7 +4,14 @@ import Layout from "./components/Layout/Layout";
 import { RouterProvider } from "react-router-dom";
 
 import Dashboard from "./Pages/Dashboard/Dashboard";
-import Accounting from "./Pages/Accounting/Accounting";
+
+import AccountingLayout from "./Pages/Accounting/AccountingLayout";
+import Invoices from "./Pages/Accounting/Invoices";
+import JobCosting from "./Pages/Accounting/JobCosting";
+import AttendanceLog from "./Pages/Accounting/AttendanceLog";
+import Payroll from "./Pages/Accounting/Payroll";
+import AuditLog from "./Pages/Accounting/AuditLog";
+
 import Inventory from "./Pages/Inventory/Inventory";
 import Sales from "./Pages/Sales/Sales";
 import JobOrder from "./Pages/JobOrder/JobOrder";
@@ -26,7 +33,7 @@ import Step5 from "./Pages/JobOrder/CreateOrder/finalState/Step5";
 
 import Attendance from "./Pages/Attandance/Attandance";
 
-let routers = createBrowserRouter([
+const routers = createBrowserRouter([
   {
     path: "",
     element: <Layout />,
@@ -34,13 +41,11 @@ let routers = createBrowserRouter([
       { index: true, element: <Dashboard /> },
 
       { path: "Attendance", element: <Attendance /> },
-
       { path: "JobOrder/JobOrder", element: <JobOrder /> },
 
       {
         path: "JobOrder/create",
         element: <CreateOrder />,
-        handle: { title: "create order" },
         children: [
           { index: true, element: <Step1 /> },
           { path: "step2", element: <Step2 /> },
@@ -50,7 +55,6 @@ let routers = createBrowserRouter([
         ],
       },
 
-      // ✅ 🔥 IMPORTANT: dynamic tracking route
       {
         path: "JobOrder/tracking/:id",
         element: <Tracking />,
@@ -61,19 +65,28 @@ let routers = createBrowserRouter([
       {
         path: "Production",
         element: <Production />,
-        handle: { title: "Production" },
         children: [
           { index: true, element: <OverView /> },
           { path: "board", element: <Board /> },
         ],
       },
 
-      // ✅ Sales (as you requested الاسم صح)
       { path: "Sales", element: <Sales /> },
 
       { path: "Employees", element: <Employees /> },
       { path: "Suppliers", element: <Suppliers /> },
-      { path: "Accounting", element: <Accounting /> },
+
+      {
+        path: "Accounting",
+        element: <AccountingLayout />,
+        children: [
+          { index: true, element: <Invoices /> },
+          { path: "jobcosting", element: <JobCosting /> },
+          { path: "attendance", element: <AttendanceLog /> },
+          { path: "payroll", element: <Payroll /> },
+          { path: "audit", element: <AuditLog /> },
+        ],
+      },
 
       { path: "*", element: <h1>Not Found</h1> },
     ],

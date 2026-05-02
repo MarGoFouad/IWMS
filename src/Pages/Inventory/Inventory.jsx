@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Inventory.css";
-import { FaSearch, FaEdit, FaPlus, FaExclamationTriangle } from "react-icons/fa";
+import { FaSearch, FaEdit, FaPlus, FaExclamationTriangle ,FaBox} from "react-icons/fa";
 
 export default function Inventory() {
   const [search, setSearch] = useState("");
@@ -280,7 +280,7 @@ export default function Inventory() {
       </table>
 
       <div className="cutoff-container">
-        <h3>Cut-off Materials (Reusable Pieces)</h3>
+        <h3><FaBox size={18} style={{backgroundColor: "#f0f0f0"}} />   Cut-off Materials (Reusable Pieces)</h3>
 
         <div className="cutoff-grid">
           {cutoffs.map((c) => (

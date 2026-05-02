@@ -1,0 +1,98 @@
+.accounting {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.actionsBar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.exportBtn {
+  background: #e9edf5;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.newBtn {
+  background: #0d194e;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.topCards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.box {
+  background: white;
+  padding: 18px;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.box h4 {
+  font-size: 12px;
+  color: #888;
+  font-weight: 500;
+}
+
+.box h2 {
+  font-size: 22px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.box p {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.tabs a {
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background: #f1f3f7;
+  color: #333;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.tabs a:hover {
+  background: #e0e4ec;
+}
+
+.tabs a.active {
+  background: #0d194e;
+  color: white;
+}
+
+.contentArea {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  min-height: 300px;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Accounting() {
+export default function AuditLog() {
   return (
     <div>
       

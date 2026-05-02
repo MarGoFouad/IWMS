@@ -12,6 +12,10 @@ export default function Navbar() {
     return "Create Job Order";
   }
 
+    if (location.pathname.startsWith("/Accounting")) {
+    return "Accounting & Costing";
+  }
+
   if (location.pathname.startsWith("/JobOrder/tracking")) {
     return "Tracking Orders";
   }
@@ -34,8 +38,6 @@ export default function Navbar() {
         return "Employees";
       case "/Suppliers":
         return "Suppliers";
-      case "/Accounting":
-        return "Accounting";
       default:
         return "Page";
     }
